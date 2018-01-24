@@ -1,33 +1,31 @@
-
+import java.util.ArrayList;
 /**
- * Write a description of class Catálogo here.
+ * Esta clase servirá como catálogo de series, pudiendo realizar
+ * distintas modificaciones a los datos de las mismas.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jorge Jaular Lasaga
+ * @version 24/01/2018
  */
 public class Catálogo
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    // Atributo que almacenará las series en el catálogo.
+    private ArrayList<SerieTV> series;
 
     /**
      * Constructor for objects of class Catálogo
      */
     public Catálogo()
     {
-        // initialise instance variables
-        x = 0;
+        // Inicializamos el atributo en el constructor.
+        series = new ArrayList<SerieTV>();
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * Permite añadir objetos de la clase SerieTV al catálogo.
      */
-    public int sampleMethod(int y)
+    public void addSerie(String titulo, int numeroTemporadas, int ano, int mes, int dia)
     {
-        // put your code here
-        return x + y;
+        SerieTV nuevaSerie = new SerieTV(titulo, numeroTemporadas, ano, mes, dia);
+        series.add(nuevaSerie);
     }
 }
