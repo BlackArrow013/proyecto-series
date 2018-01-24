@@ -43,4 +43,22 @@ public class Catálogo
             contador++;
         }
     }
+    
+    /**
+     * Muestra por pantalla las series ordenadas de 
+     * mayor a menor por el número de temporadas.
+     */
+    public void mostrarSeriesOrdenadasPorTemporada()
+    {
+        ArrayList<SerieTV> serieFinal = new ArrayList<>();
+        SerieTV serieActual = new SerieTV("", 0, 1, 1, 1, 0);
+        for (SerieTV serie : series) {
+            if(serie.getNumTemporadas() > serieActual.getNumTemporadas()) {
+                serieFinal.clear();
+                serieFinal.add(serie);
+            }
+            System.out.println(serieActual.getDatosSerie());
+        }
+    }
+    
 }
