@@ -1,33 +1,25 @@
-
+import java.time.LocalDate;
 /**
- * Write a description of class SerieTV here.
+ * Crea un objeto que almacena una serie de TV y su estado. 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jorge Jaular Lasaga
+ * @version 24/01/2018
  */
 public class SerieTV
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    // Título de la película.
+    private String titulo;
+    // El número de la temporada.
+    private int temporada;
+    // La fecha de estreno de la serie.
+    private LocalDate fechaEstreno;
     /**
      * Constructor for objects of class SerieTV
      */
-    public SerieTV()
+    public SerieTV(String titulo)
     {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+        this.titulo = titulo;
+        temporada = 0;
+        fechaEstreno = null;
+    }    
 }
