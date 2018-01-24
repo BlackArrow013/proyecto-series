@@ -10,7 +10,8 @@ public class Catálogo
 {
     // Atributo que almacenará las series en el catálogo.
     private ArrayList<SerieTV> series;
-
+    // Contador de producto.
+    private int contadorProducto;
     /**
      * Constructor for objects of class Catálogo
      */
@@ -18,6 +19,7 @@ public class Catálogo
     {
         // Inicializamos el atributo en el constructor.
         series = new ArrayList<SerieTV>();
+        contadorProducto = 01;
     }
 
     /**
@@ -25,7 +27,20 @@ public class Catálogo
      */
     public void addSerie(String titulo, int numeroTemporadas, int ano, int mes, int dia)
     {
-        SerieTV nuevaSerie = new SerieTV(titulo, numeroTemporadas, ano, mes, dia);
+        SerieTV nuevaSerie = new SerieTV(titulo, numeroTemporadas, ano, mes, dia, contadorProducto);
         series.add(nuevaSerie);
+        contadorProducto++;
+    }
+    
+    /**
+     * Muestra por pantalla las series añadidas al catálogo.
+     */
+    public void mostrarSeries()
+    {
+        int contador = 0;
+        while(contador < series.size()) {
+            System.out.println(series.get(contador).getDatosSerie());
+            contador++;
+        }
     }
 }

@@ -18,12 +18,12 @@ public class SerieTV
     /**
      * Constructor de la clase SerieTV
      */
-    public SerieTV(String titulo, int numeroTemporadas, int ano, int mes, int dia)
+    public SerieTV(String titulo, int numeroTemporadas, int ano, int mes, int dia, int codigo)
     {
         this.titulo = titulo;
         numTemporadas = numeroTemporadas;
         fechaEstreno = LocalDate.of(ano, mes, dia);
-        codigoProducto = 01;
+        codigoProducto = codigo;
     }
     
     /**
@@ -87,7 +87,7 @@ public class SerieTV
      */
     public String getDatosSerie()
     {
-        String datosSerie = "Título: " + titulo + " - Número de Temporadas: " + numTemporadas + ", fecha de estreno en " + fechaEstreno;
+        String datosSerie = "###" + codigoProducto + " Título: " + titulo + " - Número de Temporadas: " + numTemporadas + ", fecha de estreno en " + fechaEstreno;
         return datosSerie;
     }
 }
