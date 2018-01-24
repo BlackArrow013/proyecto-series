@@ -13,6 +13,8 @@ public class SerieTV
     private int numTemporadas;
     // La fecha de estreno de la serie.
     private LocalDate fechaEstreno;
+    // El código identificativo del producto.
+    private int codigoProducto;
     /**
      * Constructor de la clase SerieTV
      */
@@ -21,6 +23,7 @@ public class SerieTV
         this.titulo = titulo;
         numTemporadas = numeroTemporadas;
         fechaEstreno = LocalDate.of(ano, mes, dia);
+        codigoProducto = 01;
     }
     
     /**
@@ -48,6 +51,14 @@ public class SerieTV
     }
     
     /**
+     * Devuelve el código del producto.
+     */
+    public int getCodigoProducto()
+    {
+        return codigoProducto;
+    }
+    
+    /**
      * Cambia el título de una serie.
      */
     public void setTitulo(String titulo)
@@ -69,7 +80,7 @@ public class SerieTV
     public void setFechaEstreno(int year, int month, int day)
     {
         fechaEstreno = LocalDate.of(year, month, day);
-    }
+    } 
     
     /**
      * Devuelve toda la información de la serie en formato String.
