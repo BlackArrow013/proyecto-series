@@ -16,10 +16,10 @@ public class SerieTV
     /**
      * Constructor de la clase SerieTV
      */
-    public SerieTV(String titulo, int numTemporadas, int ano, int mes, int dia)
+    public SerieTV(String titulo, int numeroTemporadas, int ano, int mes, int dia)
     {
         this.titulo = titulo;
-        this.numTemporadas = numTemporadas;
+        numTemporadas = numeroTemporadas;
         fechaEstreno = LocalDate.of(ano, mes, dia);
     }
     
@@ -45,5 +45,29 @@ public class SerieTV
     public LocalDate getFechaEstreno()
     {
         return fechaEstreno;
+    }
+    
+    /**
+     * Cambia el título de una serie.
+     */
+    public void setTitulo(String titulo)
+    {
+        this.titulo = titulo;    
+    }
+    
+    /**
+     * Cambia el número de temporadas de una serie.
+     */
+    public void setNumTemporadas(int numeroDeTemporadas)
+    {
+        numTemporadas = numeroDeTemporadas;
+    }
+    
+    /**
+     * Cambia la fecha de estreno de una serie.
+     */
+    public void setFechaEstreno(int year, int month, int day)
+    {
+        fechaEstreno = LocalDate.of(year, month, day);
     }
 }
