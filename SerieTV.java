@@ -70,4 +70,13 @@ public class SerieTV
     {
         fechaEstreno = LocalDate.of(year, month, day);
     }
+    
+    /**
+     * Devuelve toda la información de la serie en formato String.
+     */
+    public String getDatosSerie()
+    {
+        String datosSerie = "Título: " + titulo + " - Número de Temporadas: " + numTemporadas + ", fecha de estreno en " + fechaEstreno;
+        return datosSerie;
+    }
 }
