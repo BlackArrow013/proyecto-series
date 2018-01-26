@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.Iterator;
 /**
  * Esta clase servirá como catálogo de series, pudiendo realizar
@@ -69,6 +69,31 @@ public class Catalogo
                     }                    
                 }
                 System.out.println(serieConMasTemporadas.getDatosSerie());
+                serieAOrdenar.remove(posicionSerie);                
+            }
+        }
+    }
+    
+    /**
+     * Muestra por pantalla las series ordenadas fecha de estreno.
+     */
+    public void mostrarSeriesOrdenadasPorFechaDeEstreno()
+    {
+        if(series.size() >= 0) {
+            ArrayList<SerieTV> serieAOrdenar = new ArrayList<SerieTV>();
+            serieAOrdenar.addAll(series);
+            SerieTV serieConMasTiempo = serieAOrdenar.get(0);            
+            for (int contador = 0; contador < series.size(); contador++) {
+                LocalDate fechaEstreno = LocalDate.of(9999,12,30);
+                int posicionSerie = 0;                
+                for (int contador2 = 0; contador2 < serieAOrdenar.size(); contador2++) {
+                    if(serieAOrdenar.get(contador2).getFechaEstreno().isBefore(fechaEstreno)) {
+                        serieConMasTiempo = serieAOrdenar.get(contador2);
+                        fechaEstreno = series.get(contador2).getFechaEstreno();
+                        posicionSerie = contador2;
+                    }                    
+                }
+                System.out.println(serieConMasTiempo.getDatosSerie());
                 serieAOrdenar.remove(posicionSerie);                
             }
         }
