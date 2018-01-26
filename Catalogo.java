@@ -55,12 +55,12 @@ public class Catalogo
     {
         ArrayList<SerieTV> seriesOrdenadasPorTemporada = new ArrayList<SerieTV>();
         ArrayList<SerieTV> seriesAlmacenadas = new ArrayList<SerieTV>();
-        int contador = 0;
+        seriesAlmacenadas.addAll(series);
+        boolean salirDelBucle = false;
         if(series.size() > 0) {
-            seriesAlmacenadas.addAll(series);
-            while (contador < seriesAlmacenadas.size()) {
+            while (seriesAlmacenadas.size() != 0 && !salirDelBucle) {
                 seriesOrdenadasPorTemporada.addAll(serieDeMayorTemporada(series)); 
-                contador++;
+                salirDelBucle = true;
             }
             for (SerieTV serie : series) {
                 System.out.println(serie.getDatosSerie());
@@ -87,5 +87,13 @@ public class Catalogo
             }
         }
         return serieDeMasTemporadas;
+    }
+    
+    public void cambiarNumTemporadas(int idSerie, int nuevoNumTemporadas)
+    {        
+        if (series.size() >= idSerie && idSerie >= 0) {
+            SerieTV serieACambiarTemporadas = series.get(idSerie - 1);
+            serieACambiarTemporadas.setNumTemporadas(nuevoNumTemporadas);    
+        }
     }
 }
