@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 /**
  * Esta clase servirÃ¡ como catÃ¡logo de series, pudiendo realizar
  * distintas modificaciones a los datos de las mismas.
@@ -89,11 +90,29 @@ public class Catalogo
         return serieDeMasTemporadas;
     }
     
+    /**
+     * Permite cambiar el número de temporadas de una temporada a partir de su código.
+     */
     public void cambiarNumTemporadas(int idSerie, int nuevoNumTemporadas)
     {        
         if (series.size() >= idSerie && idSerie >= 0) {
             SerieTV serieACambiarTemporadas = series.get(idSerie - 1);
             serieACambiarTemporadas.setNumTemporadas(nuevoNumTemporadas);    
+        }
+    }
+    
+    /**
+     * Permite borrar una serie a partir del número de temporadas introducido con un iterador.
+     */
+    public void eliminarSerieConUnNumeroDeterminadoDeTemporadas(int numTemporadas)
+    {
+        Iterator<SerieTV> it = series.iterator();
+        while (it.hasNext()) {
+            SerieTV t = it.next();
+            int temporadasSerie = t.getNumTemporadas();
+            if (temporadasSerie == numTemporadas) {
+                it.remove();
+            }
         }
     }
 }
