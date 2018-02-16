@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 /**
  * Esta clase servirá como catálogo de series, pudiendo realizar
  * distintas modificaciones a los datos de las mismas.
@@ -17,11 +20,28 @@ public class Catalogo
     /**
      * Constructor for objects of class Catálogo
      */
-    public Catalogo()
+    public Catalogo(String nombreArchivo)
     {
         // Inicializamos el atributo en el constructor.
         series = new ArrayList<SerieTV>();
         contadorProducto = 01;
+        try {
+            File archivo = new File(nombreArchivo);
+            Scanner sc = new Scanner(archivo);            
+            while (sc.hasNextLine()) {  
+                String[] objeto = sc.nextLine().split(" # ");
+                String titulo = objeto[0];
+                int numeroTemporadas = Integer.parseInt(objeto[1]);
+                int ano = Integer.parseInt(objeto[2]);
+                int mes = Integer.parseInt(objeto[3]);
+                int dia = Integer.parseInt(objeto[4]);
+                addSerie(titulo, numeroTemporadas, ano, mes, dia);
+            }
+            sc.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -33,7 +53,7 @@ public class Catalogo
         series.add(nuevaSerie);
         contadorProducto++;
     }
-    
+
     /**
      * Muestra por pantalla las series añadidas al catálogo.
      */
@@ -47,7 +67,7 @@ public class Catalogo
             }
         }
     }
-    
+
     /**
      * Muestra por pantalla las series ordenadas de 
      * mayor a menor por el número de temporadas.
@@ -59,7 +79,7 @@ public class Catalogo
             copiaListadoSeries = serieDeMayorTemporada(copiaListadoSeries);
         }
     }
-            
+
     /**
      * Muestra por pantalla las series ordenadas fecha de estreno.
      */
@@ -70,7 +90,7 @@ public class Catalogo
             copiaListadoSeries = serieOrdenadasPorFecha(copiaListadoSeries);
         }
     }
-    
+
     public ArrayList<SerieTV> serieDeMayorTemporada(ArrayList<SerieTV> coleccion)
     {
         SerieTV serieDeMayorTemporada = null;
@@ -89,7 +109,7 @@ public class Catalogo
         coleccion.remove(posicionSerieConMasTemporadas);
         return coleccion;        
     }
-  
+
     public ArrayList<SerieTV> serieOrdenadasPorFecha(ArrayList<SerieTV> coleccion)
     {
         SerieTV serieMasAntigua = null;
@@ -108,7 +128,7 @@ public class Catalogo
         coleccion.remove(posicionSerieMasAntigua);
         return coleccion;        
     }
-    
+
     /**
      * Permite cambiar el n�mero de temporadas de una temporada a partir de su c�digo.
      */
@@ -124,7 +144,7 @@ public class Catalogo
             contador++;
         }
     }
-    
+
     /**
      * Permite borrar una serie a partir del n�mero de temporadas introducido con un iterador.
      */

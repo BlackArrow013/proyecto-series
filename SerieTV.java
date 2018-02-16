@@ -87,7 +87,7 @@ public class SerieTV
      */
     public String getDatosSerie()
     {
-        String datosSerie = "###" + codigoProducto + " Título: " + titulo + " - Número de Temporadas: " + numTemporadas + ", fecha de estreno en " + fechaEstreno;
+        String datosSerie = "###" + codigoProducto + " Titulo: " + titulo + " - Numero de Temporadas: " + numTemporadas + ", fecha de estreno en " + fechaEstreno;
         return datosSerie;
     }
 }
