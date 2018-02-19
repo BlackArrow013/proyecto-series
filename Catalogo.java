@@ -184,14 +184,39 @@ public class Catalogo
 
             if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() != variable) {
                 if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() == 1) {
+                    System.out.println("");
                     System.out.println(serieConElMayorNumeroDeTemporadas.getNumTemporadas() + " temporada");
                 }
                 else {
+                    System.out.println("");
                     System.out.println(serieConElMayorNumeroDeTemporadas.getNumTemporadas() + " temporadas");
                 }
                 variable = serieConElMayorNumeroDeTemporadas.getNumTemporadas();
             }
             System.out.println(serieConElMayorNumeroDeTemporadas);
         }    
+    }
+    
+    /**
+     * Las series ordenadas por número de temporadas también aparecerán ordenadas alfabéticamente.
+     */
+    public void ordenarAlfabeticamenteLasSeriesOrdenadasPorTemporadas()
+    {
+        for (int i = 0; i < series.size(); i++) {
+            SerieTV serieOrdenadaPorOrdenAlfabetico = series.get(i);
+            int posicion = i;
+            for (int j = i + 1; j < series.size(); j++) {
+                SerieTV serieActual = series.get(j);
+                if (serieOrdenadaPorOrdenAlfabetico.getTitulo().compareToIgnoreCase(serieActual.getTitulo()) > 0) {
+                    serieOrdenadaPorOrdenAlfabetico = serieActual;
+                    posicion = j;
+                }
+            }
+            if (posicion != i) {                
+                SerieTV aux = series.get(i);
+                series.set(i, series.get(posicion));
+                series.set(posicion, aux);
+            }
+        }
     }
 }
