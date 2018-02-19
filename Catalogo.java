@@ -62,7 +62,7 @@ public class Catalogo
         if(series.size() > 0) {
             int contador = 0;
             while(contador < series.size()) {
-                System.out.println(series.get(contador).getDatosSerie());
+                System.out.println(series.get(contador));
                 contador++;
             }
         }
@@ -158,5 +158,40 @@ public class Catalogo
                 it.remove();
             }
         }
+    }
+
+    /**
+     * Ordena y diferencia el listado por número de temporadas de mayor a menor y las muestra por pantalla.
+     */
+    public void ordenarSeriesPorTemporadas()
+    {
+        int variable = 0;
+        for (int i = 0; i < series.size(); i++) {
+            SerieTV serieConElMayorNumeroDeTemporadas = series.get(i);
+            int posicion = i;
+            for (int j = i + 1; j < series.size(); j++) {
+                SerieTV serieActual = series.get(j);
+                if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() < serieActual.getNumTemporadas()) {
+                    serieConElMayorNumeroDeTemporadas = serieActual;
+                    posicion = j;
+                }
+            }
+            if (posicion != i) {                
+                SerieTV aux = series.get(i);
+                series.set(i, series.get(posicion));
+                series.set(posicion, aux);
+            } 
+
+            if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() != variable) {
+                if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() == 1) {
+                    System.out.println(serieConElMayorNumeroDeTemporadas.getNumTemporadas() + " temporada");
+                }
+                else {
+                    System.out.println(serieConElMayorNumeroDeTemporadas.getNumTemporadas() + " temporadas");
+                }
+                variable = serieConElMayorNumeroDeTemporadas.getNumTemporadas();
+            }
+            System.out.println(serieConElMayorNumeroDeTemporadas);
+        }    
     }
 }
