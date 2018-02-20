@@ -74,9 +74,22 @@ public class Catalogo
      */
     public void mostrarSeriesOrdenadasPorTemporada()
     {
-        ArrayList<SerieTV> copiaListadoSeries = new ArrayList(series);        
-        while (copiaListadoSeries.size() > 0) {
-            copiaListadoSeries = serieDeMayorTemporada(copiaListadoSeries);
+        for (int i = 0; i < series.size(); i++) {
+            SerieTV serieConElMayorNumeroDeTemporadas = series.get(i);
+            int posicion = i;
+            for (int j = i + 1; j < series.size(); j++) {
+                SerieTV serieActual = series.get(j);
+                if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() < serieActual.getNumTemporadas()) {
+                    serieConElMayorNumeroDeTemporadas = serieActual;
+                    posicion = j;
+                }
+            }
+            if (posicion != i) {                
+                SerieTV aux = series.get(i);
+                series.set(i, series.get(posicion));
+                series.set(posicion, aux);
+            }
+            System.out.println(serieConElMayorNumeroDeTemporadas);
         }
     }
 
@@ -85,48 +98,23 @@ public class Catalogo
      */
     public void mostrarSeriesOrdenadasPorFechaDeEstreno()
     {
-        ArrayList<SerieTV> copiaListadoSeries = new ArrayList(series);        
-        while (copiaListadoSeries.size() > 0) {
-            copiaListadoSeries = serieOrdenadasPorFecha(copiaListadoSeries);
+        for (int i = 0; i < series.size(); i++) {
+            SerieTV serieConElMayorNumeroDeTemporadas = series.get(i);
+            int posicion = i;
+            for (int j = i + 1; j < series.size(); j++) {
+                SerieTV serieActual = series.get(j);
+                if (serieConElMayorNumeroDeTemporadas.getFechaEstreno().isAfter(serieActual.getFechaEstreno())) {
+                    serieConElMayorNumeroDeTemporadas = serieActual;
+                    posicion = j;
+                }
+            }
+            if (posicion != i) {                
+                SerieTV aux = series.get(i);
+                series.set(i, series.get(posicion));
+                series.set(posicion, aux);
+            }
+            System.out.println(serieConElMayorNumeroDeTemporadas);
         }
-    }
-
-    public ArrayList<SerieTV> serieDeMayorTemporada(ArrayList<SerieTV> coleccion)
-    {
-        SerieTV serieDeMayorTemporada = null;
-        int posicionSerieConMasTemporadas = -1;
-        int numTemporadasReferencia = 0;       
-        int posicion = 0;
-        for (SerieTV serie : series){
-            if (serie.getNumTemporadas() >= numTemporadasReferencia){
-                numTemporadasReferencia = serie.getNumTemporadas();
-                serieDeMayorTemporada = serie;
-                posicionSerieConMasTemporadas = posicion;
-            }
-            posicion++;
-        }              
-        System.out.println(serieDeMayorTemporada);
-        coleccion.remove(posicionSerieConMasTemporadas);
-        return coleccion;        
-    }
-
-    public ArrayList<SerieTV> serieOrdenadasPorFecha(ArrayList<SerieTV> coleccion)
-    {
-        SerieTV serieMasAntigua = null;
-        int posicionSerieMasAntigua = -1;
-        LocalDate numFechaReferencia = null;       
-        int posicion = 0;
-        for (SerieTV serie : series){
-            if (serie.getFechaEstreno().isBefore(numFechaReferencia)){
-                numFechaReferencia = serie.getFechaEstreno();
-                serieMasAntigua = serie;
-                posicionSerieMasAntigua = posicion;
-            }
-            posicion++;
-        }              
-        System.out.println(serieMasAntigua);
-        coleccion.remove(posicionSerieMasAntigua);
-        return coleccion;        
     }
 
     /**
