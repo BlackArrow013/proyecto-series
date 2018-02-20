@@ -161,6 +161,49 @@ public class Catalogo
     }
 
     /**
+     * Las series ordenadas por número de temporadas también aparecerán ordenadas alfabéticamente.
+     */
+    public void ordenarAlfabeticamenteLasSeriesOrdenadasPorTemporadas()
+    {
+        int variable = 0;
+        for (int i = 0; i < series.size(); i++) {
+            SerieTV serieConElMayorNumeroDeTemporadas = series.get(i);
+            int posicion = i;
+            for (int j = i + 1; j < series.size(); j++) {
+                SerieTV serieActual = series.get(j);
+                if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() < serieActual.getNumTemporadas()) {
+                    serieConElMayorNumeroDeTemporadas = serieActual;
+                    posicion = j;
+                }
+                else if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() == serieActual.getNumTemporadas()) {
+                    if (serieConElMayorNumeroDeTemporadas.getTitulo().compareToIgnoreCase(serieActual.getTitulo()) > 0) {
+                        serieConElMayorNumeroDeTemporadas = serieActual;  
+                        posicion = j;
+                    }
+                }
+            }
+            if (posicion != i) {                
+                SerieTV aux = series.get(i);
+                series.set(i, series.get(posicion));
+                series.set(posicion, aux);
+            } 
+
+            if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() != variable) {
+                if (serieConElMayorNumeroDeTemporadas.getNumTemporadas() == 1) {
+                    System.out.println("");
+                    System.out.println(serieConElMayorNumeroDeTemporadas.getNumTemporadas() + " temporada");
+                }
+                else {
+                    System.out.println("");
+                    System.out.println(serieConElMayorNumeroDeTemporadas.getNumTemporadas() + " temporadas");
+                }
+                variable = serieConElMayorNumeroDeTemporadas.getNumTemporadas();
+            }
+            System.out.println(serieConElMayorNumeroDeTemporadas);
+        }    
+    }
+
+    /**
      * Ordena y diferencia el listado por número de temporadas de mayor a menor y las muestra por pantalla.
      */
     public void ordenarSeriesPorTemporadas()
@@ -195,28 +238,5 @@ public class Catalogo
             }
             System.out.println(serieConElMayorNumeroDeTemporadas);
         }    
-    }
-    
-    /**
-     * Las series ordenadas por número de temporadas también aparecerán ordenadas alfabéticamente.
-     */
-    public void ordenarAlfabeticamenteLasSeriesOrdenadasPorTemporadas()
-    {
-        for (int i = 0; i < series.size(); i++) {
-            SerieTV serieOrdenadaPorOrdenAlfabetico = series.get(i);
-            int posicion = i;
-            for (int j = i + 1; j < series.size(); j++) {
-                SerieTV serieActual = series.get(j);
-                if (serieOrdenadaPorOrdenAlfabetico.getTitulo().compareToIgnoreCase(serieActual.getTitulo()) > 0) {
-                    serieOrdenadaPorOrdenAlfabetico = serieActual;
-                    posicion = j;
-                }
-            }
-            if (posicion != i) {                
-                SerieTV aux = series.get(i);
-                series.set(i, series.get(posicion));
-                series.set(posicion, aux);
-            }
-        }
     }
 }
